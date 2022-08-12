@@ -89,16 +89,17 @@ const Register = (props: Props) => {
                 <span>{formik.errors.email}</span>
               )}
             </div>
-            <div className="form__group-input ">
+            <div className="form__group-input">
               <input
                 type={"text"}
                 placeholder="Please fill in the email form."
+                className="flex-1 py-[10px] rounded-l-lg  bg-transparent pl-5 text-lg focus-visible:outline-none"
                 name="email"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.email}
               />
-              <button >
+              <button className="text-[14px] font-bold py-[16px] px-[38px] bg-[#3772FF] rounded-r-[8px] text-white ">
                 Authenticate
               </button>
             </div>
