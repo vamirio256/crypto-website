@@ -3,10 +3,10 @@
     &__wrapper {
         @apply flex flex-col items-center justify-center w-[690px];
         &-title {
-            @apply text-[48px] font-bold text-[#23262F] mt-4 dark:text-white;
+            @apply text-[48px] font-bold text-[#23262F] dark:text-white;
         }
         &-title__sm {
-            @apply text-[#777E90] text-[20px] font-[400];
+            @apply text-[#777E90] text-[20px] font-[400] mt-4;
         }
         &-buttons {
             @apply flex gap-2 mt-7;
@@ -24,6 +24,15 @@
             @apply flex flex-col gap-7 mt-10 w-full;
 
             .form__group {
+                &:nth-child(1) {
+                    .form__group-input {
+                        @apply flex w-full border-[2px] border-[#E5E5E5] rounded-lg  dark:bg-[#222630] dark:border-transparent dark:caret-white dark:text-white  focus-within:border-blue-600 dark:focus-within:border-blue-600;
+
+                        input {
+                            @apply flex-1 py-[10px] border-none rounded-l-lg  bg-transparent pl-5 text-lg focus-visible:outline-none focus-within:border-none ;
+                        }
+                    }
+                }
                 @apply flex flex-col gap-3;
                 &-title {
                     @apply flex gap-2 items-center;
@@ -34,15 +43,7 @@
                         @apply text-[14px] font-[400] text-[#D33535];
                     }
                 }
-
                 &-input {
-                    &:nth-child(1) {
-                        @apply flex w-full border-[2px] border-[#E5E5E5] rounded-lg  dark:bg-[#222630] dark:border-transparent dark:caret-white dark:text-white  focus-within:border-blue-600 dark:focus-within:border-blue-600;
-
-                        button {
-                            @apply text-[14px] font-bold py-[16px] px-[38px] bg-[#3772FF] rounded-r-[8px] text-white;
-                        }
-                    }
                     @apply w-full relative;
                     input,
                     select {
