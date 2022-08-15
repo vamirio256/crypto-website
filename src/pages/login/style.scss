@@ -1,0 +1,111 @@
+.login {
+    @apply h-[100vh] flex justify-center items-center dark:bg-_dark_bg dark:text-_dark_text;
+
+    &__wrapper {
+        @apply text-center w-[690px];
+        
+        &__title{
+            @apply mb-4;
+
+            &--big{
+                @apply text-5xl text-_light_text font-bold mb-4;
+            }
+
+            &--small{
+                @apply text-_light_sub text-xl;
+            }
+        }
+
+        &__link{
+            @apply h-9 bg-_green/10 mx-[10rem] rounded-full flex items-center;
+            
+            &__icon{
+                @apply h-9 w-9 bg-_green flex justify-center items-center rounded-full ml-[-0rem];
+            }
+
+            &__text{
+                @apply flex items-center justify-center w-full;
+
+                &--bold{
+                    @apply text-_light_text rounded-2xl font-bold;
+                }
+            }
+        }
+
+        &__options{
+            @apply mt-8 mb-7;
+
+            &--toggle{
+                @apply px-6 py-2 bg-_blue rounded-full mr-2 font-bold text-white;
+            }
+
+            &--untoggle{
+                @apply px-6 py-2 font-bold text-_light_sub;
+            }
+        }
+    }
+}
+
+.form{
+    @apply w-full text-start;
+
+    &__group{
+        @apply mb-7;
+
+        &__title--bold{
+            @apply font-bold text-xl text-_light_sub mb-3;
+        }
+
+        &__input{
+            @apply w-full text-[1.125rem] py-[0.625rem] px-5 border-_light_border border-solid border-[1px] rounded-lg
+        }
+    }
+
+    &__checkbox{
+        @apply w-full flex justify-between;
+
+        &__remember{
+            @apply mr-2;
+        }
+
+        &__forgot{
+            @apply text-_error;
+        }
+    }
+
+    &__submit{
+        @apply bg-_blue text-white w-full h-[56px] rounded-full font-bold;
+    }
+
+    &__register{
+        @apply m-6 text-center;
+
+        &__link{
+            @apply font-bold text-_blue;
+        }
+    }
+}
+
+.qr{
+    @apply relative left-[80px] flex flex-col justify-center items-center;
+
+    &__box{
+        @apply bg-_light_sub_alt w-[11.25rem] h-[11.25rem] shadow-[0_10px_25px_0_rgba(71,92,133,0.1)];
+    }
+
+    &__title{
+        @apply font-bold text-_light_text text-xl mt-6 mb-2;
+    }
+
+    &__text{
+        @apply flex flex-col justify-center items-center text-_light_sub;
+
+        &__link{
+            @apply text-_blue font-bold;
+        }
+    }
+}
+
+.qr--hidden{
+    @apply relative left-[80px] flex flex-col justify-center items-center invisible;
+}
