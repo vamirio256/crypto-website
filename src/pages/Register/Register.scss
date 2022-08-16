@@ -1,7 +1,24 @@
 .register {
-    @apply min-h-screen flex items-center justify-center dark:bg-[#1E1E1E] py-[100px];
+    @apply flex flex-col dark:bg-[#141416];
+
+    &__header {
+        @apply flex items-center justify-between px-[255px] py-[56px] bg-[#F7F7F7] dark:bg-[#18191D];
+        h5 {
+            @apply dark:text-white;
+        }
+
+        &-breadcrumb {
+            @apply flex gap-3;
+            span + span {
+                &::before {
+                    content: "/";
+                    margin-right: 12px;
+                }
+            }
+        }
+    }
     &__wrapper {
-        @apply flex flex-col items-center justify-center w-[690px];
+        @apply flex flex-col items-center justify-center max-w-[690px] w-full py-[100px] m-auto;
         &-title {
             @apply text-[48px] font-bold text-[#23262F] dark:text-white;
         }
@@ -16,20 +33,22 @@
                     @apply text-[#777E90] border-none outline-none;
                 }
                 &.primary {
-                    @apply bg-[#3772FF] text-white;
+                    @apply bg-[#3772FF] text-white  hover:bg-blue-800 focus:outline-none focus-visible:outline-none;
                 }
             }
         }
         &__form {
-            @apply flex flex-col gap-7 mt-10 w-full;
-
+            @apply flex flex-col mt-10 w-full;
             .form__group {
                 &:nth-child(1) {
                     .form__group-input {
                         @apply flex w-full border-[2px] border-[#E5E5E5] rounded-lg  dark:bg-[#222630] dark:border-transparent dark:caret-white dark:text-white  focus-within:border-blue-600 dark:focus-within:border-blue-600;
 
                         input {
-                            @apply flex-1 py-[10px] border-none rounded-l-lg  bg-transparent pl-5 text-lg focus-visible:outline-none focus-within:border-none ;
+                            @apply flex-1 py-[10px] border-none rounded-none rounded-l-lg  bg-transparent pl-5 text-lg focus-visible:outline-none focus-within:border-none;
+                        }
+                        button {
+                            @apply text-[14px] font-bold py-[16px] px-[38px] bg-[#3772FF] rounded-r-[8px] text-white  hover:bg-blue-800 focus:outline-none focus-visible:outline-none;
                         }
                     }
                 }
@@ -54,7 +73,7 @@
                     }
                 }
                 &-button {
-                    @apply w-full font-bold text-white py-[18px] bg-[#3772FF] rounded-full;
+                    @apply w-full font-bold text-white py-[18px] bg-[#3772FF] rounded-full  hover:bg-blue-800 focus:outline-none focus-visible:outline-none;
                 }
             }
         }

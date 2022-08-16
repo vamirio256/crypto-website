@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
-import Login from './pages/Login';
+import Login from './pages/login';
 import Register from './pages/Register';
 
 function App() {
