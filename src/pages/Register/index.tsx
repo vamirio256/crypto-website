@@ -4,14 +4,18 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useDarkMode from "../../components/hooks/useDarkMode";
 import "./Register.scss";
-
+import { InputField, SelectField } from "../../components/FormFields";
+import { useNavigate } from "react-router-dom";
 type Props = {};
-
+const data = [
+  { label: "South Korea (+82)", value: "sk" },
+  { label: "Viet Nam (+84)", value: "vi" },
+];
 const Register = (props: Props) => {
+  const navigate = useNavigate()
   const [isDarkMode, toggleDarkMode] = useDarkMode();
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmShown, setPasswordConfirmShown] = useState<any>(false);
-  console.log(toggleDarkMode);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -19,7 +23,7 @@ const Register = (props: Props) => {
       password: "",
       confirm_password: "",
       nickName: "",
-      country: "HA",
+      country: "vi",
       phone: "",
       code: "",
     },
@@ -52,188 +56,158 @@ const Register = (props: Props) => {
       console.log(values);
     },
   });
-  const handleChangeSelectCountry = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    formik.setFieldValue("country", e.target.value);
-  };
   const togglePasswordVisiblity = () => {
-    // setPasswordShown(passwordShown ? false : true);
     setPasswordShown(!passwordShown);
   };
   const togglePasswordCofirmVisiblity = () => {
-    // setPasswordShown(passwordShown ? false : true);
     setPasswordConfirmShown(!passwordConfirmShown);
   };
   return (
-    <section className="register">
-      <div className="register__wrapper ">
-        <h3 className="register__wrapper-title">Register To Rockie</h3>
-        <p className="register__wrapper-title__sm ">
-          Register in advance and enjoy the event benefits
-        </p>
-        <div className="register__wrapper-buttons ">
-          <button className="button primary">Email</button>
-          <button onClick={toggleDarkMode} className="button outline">
-            Mobile
-          </button>
+    <>
+
+      <section className="register">
+        <div className="register__header">
+          <h5 className="text-[40px] font-bold text-[#23262F]">Register</h5>
+          <div className="register__header-breadcrumb">
+            <span className="text-lg text-[#777E90]">Home</span>
+            <span className="text-lg text-[#777E90]">Register</span>
+          </div>
         </div>
-        <form
-          onSubmit={formik.handleSubmit}
-          className="register__wrapper__form "
-        >
-          <div className="form__group ">
-            <div className="form__group-title">
-              <label className="">Email/ID</label>
-              {formik.errors.email && formik.touched.email && (
-                <span>{formik.errors.email}</span>
-              )}
-            </div>
-            <div className="form__group-input">
-              <input
-                type={"text"}
-                placeholder="Please fill in the email form."
-                className="flex-1 py-[10px] rounded-l-lg  bg-transparent pl-5 text-lg focus-visible:outline-none"
-                name="email"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              />
-              <button className="text-[14px] font-bold py-[16px] px-[38px] bg-[#3772FF] rounded-r-[8px] text-white ">
-                Authenticate
-              </button>
-            </div>
+        <div className="register__wrapper ">
+          <h3 className="register__wrapper-title">Register To Rockie</h3>
+          <p className="register__wrapper-title__sm ">
+            Register in advance and enjoy the event benefits
+          </p>
+          <div className="register__wrapper-buttons ">
+            <button className="button primary">Email</button>
+            <button onClick={toggleDarkMode} className="button outline">
+              Mobile
+            </button>
           </div>
-          <div className="form__group">
-            <div className="form__group-title">
-              <label htmlFor="Password">Password </label>
-              {formik.errors.password && formik.touched.password && (
-                <span>{formik.errors.password}</span>
-              )}
-              {!formik.errors.password &&
-                formik.errors.confirm_password &&
-                formik.touched.confirm_password && (
-                  <span>{formik.errors.confirm_password}</span>
+          <form
+            onSubmit={formik.handleSubmit}
+            className="register__wrapper__form "
+          >
+            <div className="form__group ">
+              <div className="form__group-title">
+                <label className="">Email/ID</label>
+                {formik.errors.email && formik.touched.email && (
+                  <span>{formik.errors.email}</span>
                 )}
+              </div>
+              <div className="form__group-input">
+                <input
+                  type={"text"}
+                  placeholder="Please fill in the email form."
+                  name="email"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.email}
+                />
+                <button>Authenticate</button>
+              </div>
             </div>
-            <div className="form__group-input">
-              <input
-                type={passwordShown ? "text" : "password"}
-                placeholder="Please enter a password."
-                className=""
-                name="password"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.password}
-              />
-              <img
-                onClick={() => togglePasswordVisiblity()}
-                className="eye"
-                src={images.eyeShow}
-                alt="eyeShow"
-              />
+            <div className="form__group">
+              <div className="form__group-title">
+                <label htmlFor="Password">Password </label>
+                {formik.errors.password && formik.touched.password && (
+                  <span>{formik.errors.password}</span>
+                )}
+                {!formik.errors.password &&
+                  formik.errors.confirm_password &&
+                  formik.touched.confirm_password && (
+                    <span>{formik.errors.confirm_password}</span>
+                  )}
+              </div>
+              <div className="form__group-input">
+                <input
+                  type={passwordShown ? "text" : "password"}
+                  placeholder="Please enter a password."
+                  className=""
+                  name="password"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                />
+                <img
+                  onClick={() => togglePasswordVisiblity()}
+                  className="eye"
+                  src={images.eyeShow}
+                  alt="eyeShow"
+                />
+              </div>
+              <div className="form__group-input">
+                <input
+                  type={passwordConfirmShown ? "text" : "password"}
+                  placeholder="Please re-enter your password."
+                  name="confirm_password"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.confirm_password}
+                />
+                <img
+                  onClick={() => togglePasswordCofirmVisiblity()}
+                  className="eye"
+                  src={images.eyeShow}
+                  alt="eyeShow"
+                />
+              </div>
             </div>
-            <div className="form__group-input">
-              <input
-                type={passwordConfirmShown ? "text" : "password"}
-                placeholder="Please re-enter your password."
-                name="confirm_password"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.confirm_password}
-              />
-              <img
-                onClick={() => togglePasswordCofirmVisiblity()}
-                className="eye"
-                src={images.eyeShow}
-                alt="eyeShow"
-              />
-            </div>
-          </div>
-          <div className="form__group">
-            <div className="form__group-title">
-              <label>NickName</label>
-              {formik.errors.nickName && formik.touched.nickName && (
-                <span>{formik.errors.nickName}</span>
-              )}
-            </div>
-            <div className="form__group-input">
-              <input
-                type={"text"}
-                placeholder="Enter Email"
-                name="nickName"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.nickName}
-              />
-            </div>
-          </div>
-          <div className="form__group">
-            <div className="form__group-title">
-              <label>Country</label>
-              {formik.errors.country && formik.touched.country && (
-                <span>{formik.errors.country}</span>
-              )}
-            </div>
-            <div className="form__group-input">
-              <select
-                defaultValue={formik.values.country}
-                onChange={handleChangeSelectCountry}
-              >
-                <option value="HA">South Korea (+82)</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
-              </select>
-            </div>
-          </div>
-          <div className="form__group">
-            <div className="form__group-title">
-              <label>Phone</label>
-              {formik.errors.phone && formik.touched.phone && (
-                <span>{formik.errors.phone}</span>
-              )}
-            </div>
-            <div className="form__group-input">
-              <input
-                type={"tel"}
-                placeholder="ex) 01012345678 (without '-')"
-                name="phone"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.phone}
-              />
-            </div>
-          </div>
-          <div className="form__group">
-            <div className="form__group-title">
-              <label>UID Code</label>
-              {formik.errors.code && formik.touched.code && (
-                <span>{formik.errors.code}</span>
-              )}
-            </div>
-            <div className="form__group-input">
-              <input
-                type={"tex"}
-                placeholder="Please enter your invitation code."
-                name="code"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values.code}
-              />
-            </div>
-          </div>
-          <button className="form__group-button">Pre-Registration</button>
-        </form>
-        <p className="text-[16px] font-medium text-[#23262F] mt-6 dark:text-[#B1B5C3]">
-          Already have an account?
-          <span className="text-[16px] font-bold text-[#3772FF] cursor-pointer ml-1">
-            Login
-          </span>
-        </p>
-      </div>
-    </section>
+            <InputField
+              name="nickName"
+              label="NickName"
+              formik={formik}
+              placeholder="Enter Email"
+              type="text"
+              value={formik.values.nickName}
+              error={formik.touched.nickName && Boolean(formik.errors.nickName)}
+              errorText={formik.errors.nickName}
+            />
+
+            <SelectField
+              name="country"
+              formik={formik}
+              label="Country"
+              value={formik.values.country}
+              error={formik.touched.country && Boolean(formik.errors.country)}
+              errorText={formik.errors.country}
+              options={data}
+            />
+
+            <InputField
+              name="phone"
+              label="Phone"
+              formik={formik}
+              placeholder="ex) 01012345678 (without '-')"
+              type="tel"
+              value={formik.values.phone}
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              errorText={formik.errors.phone}
+            />
+            <InputField
+              name="code"
+              label="UID Code"
+              formik={formik}
+              placeholder="Please enter your invitation code."
+              type="text"
+              value={formik.values.code}
+              error={formik.touched.code && Boolean(formik.errors.code)}
+              errorText={formik.errors.code}
+            />
+
+            <button type="submit" className="form__group-button">
+              Pre-Registration
+            </button>
+          </form>
+          <p className="text-[16px] font-medium text-[#23262F] mt-6 dark:text-[#B1B5C3]">
+            Already have an account?
+            <span onClick={()=>navigate("/login")} className="text-[16px] font-bold text-[#3772FF] cursor-pointer ml-1">
+              Login
+            </span>
+          </p>
+        </div>
+      </section>
+    </>
   );
 };
 
